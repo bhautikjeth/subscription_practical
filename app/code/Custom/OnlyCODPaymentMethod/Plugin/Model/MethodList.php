@@ -10,8 +10,7 @@ class MethodList
         \Magento\Payment\Model\MethodList $subject,
         $availableMethods,
         CartInterface $quote = null
-    )
-    {
+    ) {
         $shippingMethod = $this->getShippingMethodFromQuote($quote);
         foreach ($availableMethods as $key => $method) {
             // Here we will hide CashonDeliver method while customer select FlateRate Shipping Method
