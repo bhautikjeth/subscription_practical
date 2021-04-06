@@ -1,0 +1,66 @@
+<?php
+/**
+ * This file is part of the StockStatusLabel package.
+ *
+ * (c) Luca Sculco <sculco.luca@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE.txt
+ * file that was distributed with this source code.
+ */
+
+$helper = $this->helper('Lucasart\StockStatusLabel\Helper\Data');
+if ($helper->isLoggedIn()) {
+    $subscriptionsHtml = $helper->getSubscriptionFrequencyHtml(); ?>
+    <?php if ($block->isStockStatusLabelEnabled()) : ?>
+
+        <?php /* @noEscape */
+        echo $block->getStyle(); ?>
+        <div class="subscription-codes" style="margin: 20px;display: none;">
+            <input type="radio" id="onetime" name="subscription_type" value="onetime" checked="checked">
+            <label for="onetime">One Time</label><br>
+            <input type="radio" id="subscription" name="subscription_type" value="subscription">
+            <label for="subscription">Subscription</label><br>
+            <div class="subscription-div" style="display: none">
+                <h3>Subscription</h3>
+                <select name="subscription" id="subscription">
+                    <?php echo $subscriptionsHtml; ?>
+                </select>
+            </div>
+        </div>
+
+        <label id="stock_status_label"></label>
+
+    <?php endif; ?>
+    <script>
+        // console.log('test');
+        require(["jquery"], function (jQuery) {
+            // console.log('test');
+            jQuery('input[type=radio][name=subscription_type]').change(function () {
+                if (this.value === 'onetime') {
+                    jQuery(".subscription-div").hide();
+                } else if (this.value === 'subscription') {
+                    jQuery(".subscription-div").show();
+                }
+            });
+        });
+    </script>
+    <script type="text/x-magento-init">
+        {
+            "#stock_status_label": {
+                "Lucasart_StockStatusLabel/js/stock-status-label": {
+                    "productOptions": <?php /* @noEscape */
+        echo $block->getProductOptions() ?>,
+                    "productData": <?php /* @noEscape */
+        echo $block->getProductData() ?>,
+                    "labels": <?php /* @noEscape */
+        echo $block->getLabelTexts() ?>
+                }
+            }
+        }
+
+
+
+
+    </script>
+    <?php
+} ?>
