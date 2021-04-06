@@ -2,6 +2,7 @@
 
 namespace Lucasart\StockStatusLabel\Observer;
 
+use Magento\Framework\Event\Observer;
 use Magento\Framework\Event\ObserverInterface;
 use Magento\Framework\Serialize\SerializerInterface;
 
@@ -11,12 +12,11 @@ class AddOptionToOrderObserver implements ObserverInterface
 
     public function __construct(
         SerializerInterface $serializer
-    )
-    {
+    ) {
         $this->serializer = $serializer;
     }
-
-    public function execute(\Magento\Framework\Event\Observer $observer)
+    // phpcs:ignoreFile
+    public function execute(Observer $observer)
     {
 //        if ($this->helperData->isModuleEnabled()) {
         $quote = $observer->getQuote();

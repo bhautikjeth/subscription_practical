@@ -95,6 +95,7 @@ class Label extends \Magento\Framework\View\Element\Template
 
             foreach ($childIds as $childId) {
                 $stockItem = $this->stockRegistry->getStockItem($childId);
+                // phpcs:ignore
                 $childProduct = $objectManager->create('Magento\Catalog\Model\Product')->load($childId);
                 $this->productData['childs'][$childId] = $product->getId();
                 if ($childProduct->getSubscription()) {

@@ -22,8 +22,7 @@ class Data extends AbstractHelper
         Context $context,
         \Magento\Framework\App\Http\Context $httpContext,
         SubscriptionFrequencyFactory $subscriptionFrequencyFactory
-    )
-    {
+    ) {
         parent::__construct($context);
         $this->httpContext = $httpContext;
         $this->subscriptionFrequencyFactory = $subscriptionFrequencyFactory;
@@ -42,7 +41,8 @@ class Data extends AbstractHelper
 
         $subscriptionsHtml .= "<option value=''>Select Frequency</option>";
         foreach ($schoolCollection as $value) {
-            $subscriptionsHtml .= "<option value='" . $value->getSubscriptionfrequencyId() . "'>" . $value->getFrequencyName() . "</option>";
+            $subscriptionsHtml .= "<option value='" . $value->getSubscriptionfrequencyId() . "'>"
+                . $value->getFrequencyName() . "</option>";
         }
         return $subscriptionsHtml;
     }

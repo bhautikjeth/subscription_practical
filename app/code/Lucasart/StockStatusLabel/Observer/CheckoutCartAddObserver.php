@@ -24,8 +24,7 @@ class CheckoutCartAddObserver implements ObserverInterface
         RequestInterface $request,
         SerializerInterface $serializer,
         SubscriptionFrequencyFactory $subscriptionFrequencyFactory
-    )
-    {
+    ) {
         $this->layout = $layout;
         $this->storeManager = $storeManager;
         $this->request = $request;
